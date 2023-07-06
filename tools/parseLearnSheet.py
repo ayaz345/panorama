@@ -17,17 +17,15 @@ with open( '../data/learn.vdf', 'w' ) as output:
 	output.write( '"Learn"\n' )
 	output.write( '{\n' )
 	for mode, modeData in sorted(learnDataMap.items()):
-		output.write( '\t"{}"\n'.format(mode) )
+		output.write(f'\t"{mode}"\n')
 		output.write('\t{\n')
-		card_index = 1
-		for data in modeData:
-			output.write( '\t\t"{}{}"\n'.format(mode, card_index, ) )
+		for card_index, data in enumerate(modeData, start=1):
+			output.write(f'\t\t"{mode}{card_index}"\n')
 			output.write( '\t\t{\n' )
 			for key, value in data.items():
 				if key == 'Shippable':
 					continue
 				output.write( '\t\t\t"{}"\t"{}"\n'.format(key, str(value).replace('"', '\'')) )
 			output.write( '\t\t}\n' )
-			card_index += 1
 		output.write('\t}\n')
 	output.write('}')
